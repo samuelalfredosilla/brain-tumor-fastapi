@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Classification - AI Medical Diagnosis</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2z"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <span>Brain Tumor AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#technology" class="nav-link">Technology</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+            </ul>
+            <button class="cta-btn">Coba Sekarang</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    Powered by Deep Learning AI
+                </div>
+                
+                <h1 class="hero-title">
+                    Brain Tumor Classification
+                    <span class="hero-highlight">Cerdas & Akurat</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Sistem klasifikasi tumor otak berbasis AI Deep Learning yang membantu Anda menganalisis MRI scan dengan tingkat akurasi tinggi untuk deteksi dini.
+                </p>
+                
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="startClassificationBtn">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                        Mulai Klasifikasi
+                    </button>
+                    <button class="btn-secondary">
+                        Pelajari Lebih Lanjut
+                    </button>
+                </div>
+
+                <!-- Statistics -->
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <h3 class="stat-number">5000+</h3>
+                        <p class="stat-label">Data Training</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">4</h3>
+                        <p class="stat-label">Kategori</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="stat-number">95%+</h3>
+                        <p class="stat-label">Akurasi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="floating-badge badge-ai">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    AI Powered
+                </div>
+                <div class="floating-badge badge-reliable">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Reliable
+                </div>
+                <div class="floating-badge badge-fast">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Fast & Accurate
+                </div>
+                
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="result-card">
+                                <div class="result-header">
+                                    <svg class="result-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                                        <rect x="9" y="3" width="6" height="4" rx="1"/>
+                                        <path d="M9 12h6"/>
+                                    </svg>
+                                    Hasil Klasifikasi
+                                </div>
+                                <div class="result-body">
+                                    <h3 class="result-type">Glioma</h3>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" style="width: 94%"></div>
+                                    </div>
+                                    <p class="confidence-text">Confidence: 94%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Modal (Hidden by default) -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload MRI Brain Scan</h2>
+                <button class="close-btn" id="closeModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="uploadForm" action="/predict" method="post" enctype="multipart/form-data">
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" name="file" id="fileInput" accept="image/*" required hidden>
+                    
+                    <div class="upload-placeholder" id="uploadPlaceholder">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <h3>Drag & Drop MRI Image</h3>
+                        <p>atau</p>
+                        <button type="button" class="browse-btn" id="browseBtn">Pilih File</button>
+                        <p class="file-info">Mendukung: JPG, PNG, JPEG (Max 10MB)</p>
+                    </div>
+
+                    <div class="preview-container" id="previewContainer" style="display: none;">
+                        <img id="imagePreview" src="https://placehold.co/400x400?text=MRI+brain+scan+preview+image" alt="MRI Preview">
+                        <div class="preview-overlay">
+                            <button type="button" class="change-btn" id="changeBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg>
+                                Ganti Gambar
+                            </button>
+                        </div>
+                        <p class="file-name" id="fileName"></p>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                        <rect x="9" y="3" width="6" height="4" rx="1"/>
+                    </svg>
+                    Analisis MRI Scan
+                </button>
+            </form>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Menganalisis gambar MRI...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-container">
+            <div class="section-header">
+                <h2 class="section-title">Kenapa Memilih Kami?</h2>
+                <p class="section-description">Teknologi AI terdepan untuk diagnosis yang akurat dan cepat</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3>Analisis Cepat</h3>
+                    <p>Hasil prediksi dalam hitungan detik menggunakan AI model terkini</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Akurat & Aman</h3>
+                    <p>Model terlatih dengan ribuan dataset MRI untuk akurasi tinggi</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3>Mudah Digunakan</h3>
+                    <p>Interface sederhana dan intuitif untuk penggunaan yang mudah</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Brain Tumor Classification. Untuk keperluan edukasi dan penelitian.</p>
+            <p class="disclaimer">⚠️ Disclaimer: Hasil prediksi hanya untuk referensi. Konsultasikan dengan dokter spesialis untuk diagnosis medis.</p>
+        </div>
+    </footer>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

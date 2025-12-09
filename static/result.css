@@ -1,0 +1,326 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #2563eb;
+  --secondary: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --dark: #1e293b;
+  --gray: #64748b;
+  --light-gray: #f1f5f9;
+  --white: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: var(--dark);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--primary);
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Standard property added */
+}
+
+.main-content {
+  margin-bottom: 30px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.image-section,
+.result-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  border-radius: var(--radius);
+  padding: 20px;
+  min-height: 400px;
+}
+
+#analyzedImage {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  object-fit: contain; /* Agar gambar tidak gepeng */
+}
+
+.result-card {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+}
+
+.result-badge {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Warna Badge berdasarkan hasil prediksi */
+.result-badge.positive {
+  background: linear-gradient(135deg, #10b981, #059669); /* Hijau */
+}
+
+.result-badge.negative {
+  background: linear-gradient(135deg, #ef4444, #dc2626); /* Merah */
+}
+
+.result-badge.warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706); /* Kuning */
+}
+
+/* Fallback jika class prediction kosong */
+.result-badge {
+  background: var(--primary);
+}
+
+.badge-icon {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+/* 1. No Tumor (Hijau - Aman) */
+.result-badge.notumor {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* 2. Glioma (Merah - Bahaya) */
+.result-badge.glioma {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* 3. Meningioma (Ungu) */
+.result-badge.meningioma {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+/* 4. Pituitary (Oranye/Kuning) */
+.result-badge.pituitary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Fallback (Jika class tidak dikenali) */
+.result-badge {
+  background: var(--primary);
+}
+
+.prediction-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--dark);
+}
+
+.confidence-section {
+  margin: 30px 0;
+}
+
+.confidence-label {
+  font-size: 0.95rem;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+
+.confidence-bar {
+  width: 100%;
+  height: 12px;
+  background: var(--light-gray);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+/* --- PERBAIKAN PENTING DI SINI --- */
+.confidence-fill {
+  height: 100%;
+  /* Menggunakan variable dari HTML, default 0% jika gagal */
+  width: var(--percent, 0%); 
+  background: linear-gradient(90deg, var(--primary), #764ba2);
+  border-radius: 20px;
+  transition: width 1s ease-out;
+}
+
+.confidence-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.info-box {
+  background: #fff3cd;
+  border-left: 4px solid var(--warning);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.info-box svg {
+  width: 24px;
+  height: 24px;
+  color: var(--warning);
+  flex-shrink: 0;
+}
+
+.info-box p {
+  font-size: 0.9rem;
+  color: #856404;
+  margin: 0;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #1d4ed8);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.footer {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 25px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  color: var(--gray);
+}
+
+@media (max-width: 968px) {
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .image-section,
+  .result-section,
+  .header {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .action-buttons,
+  .footer {
+    display: none;
+  }
+}

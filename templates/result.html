@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Klasifikasi - Brain Tumor Classification</title>
+    <link rel="stylesheet" href="/static/result.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-section">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2z"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <h1>Hasil Klasifikasi</h1>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="result-grid">
+                <!-- Image Section -->
+                <div class="image-section">
+                    <h2>MRI Scan yang Dianalisis</h2>
+                    <div class="image-container">
+                        <img id="analyzedImage" src="{{ image_url }}" alt="Analyzed MRI Brain Scan">
+                    </div>
+                </div>
+
+                <!-- Result Section -->
+                <div class="result-section">
+                    <h2>Hasil Prediksi</h2>
+                    
+                    <div class="result-card">
+                        <!-- 
+                           Class prediction_class akan menerima: 'notumor', 'glioma', 'meningioma', atau 'pituitary'
+                           Ini dikirim dari Python (app.py)
+                        -->
+                        <div class="result-badge {{ prediction_class }}">
+                            
+                            <!-- Logika Ikon: Jika No Tumor pakai centang, jika Tumor pakai Alert -->
+                            {% if prediction_class == 'notumor' %}
+                                <!-- Icon Aman/Sehat -->
+                                <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    <path d="M9 12l2 2 4-4"/>
+                                </svg>
+                            {% else %}
+                                <!-- Icon Tumor/Peringatan -->
+                                <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Menampilkan Nama Kelas (Misal: Glioma Tumor) -->
+                        <h3 class="prediction-title">{{ prediction }}</h3>
+                        
+                        <div class="confidence-section">
+                            <p class="confidence-label">Tingkat Kepercayaan</p>
+                            <div class="confidence-bar">
+                                <!-- Fix CSS Variable untuk progress bar -->
+                                <div class="confidence-fill" style="--percent: {{ confidence }}%"></div>
+                            </div>
+                            <p class="confidence-value">{{ confidence }}%</p>
+                        </div>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="16" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            </svg>
+                            <p>
+                                {% if prediction_class == 'notumor' %}
+                                    Hasil analisis menunjukkan kondisi normal. Namun, tetap disarankan untuk check-up rutin.
+                                {% else %}
+                                    Terdeteksi indikasi {{ prediction }}. Segera konsultasikan hasil ini dengan dokter spesialis saraf.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="/" class="btn btn-primary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                            Analisis Gambar Baru
+                        </a>
+                        <button class="btn btn-secondary" onclick="window.print()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 6 2 18 2 18 9"/>
+                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                                <rect x="6" y="14" width="12" height="8"/>
+                            </svg>
+                            Cetak Hasil
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Brain Tumor Classification. Untuk keperluan edukasi dan penelitian.</p>
+        </footer>
+    </div>
+</body>
+</html>
