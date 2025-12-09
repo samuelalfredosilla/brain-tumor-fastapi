@@ -1,4 +1,5 @@
 # 🧠 Brain Tumor Classification using FastAPI & CNN (MobileNetV2)
+<img width="1359" height="642" alt="image" src="https://github.com/user-attachments/assets/f561be04-41f0-4fbc-b199-eeac5dfd7840" />
 
 A web-based application for **brain tumor MRI image classification** using **FastAPI** as the backend and a **CNN model (MobileNetV2)** for prediction.  
 This project can classify MRI images into several tumor categories automatically.
